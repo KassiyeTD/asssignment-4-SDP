@@ -1,0 +1,31 @@
+// Regular rate
+public class RegularFareStrategy implements FareStrategy {
+    @Override
+    public double calculateFare(double distanceKm, double durationMin) {
+        return (1.00 * distanceKm) + (0.25 * durationMin);
+    }
+}
+
+// Premium rate
+public class PremiumFareStrategy implements FareStrategy {
+    @Override
+    public double calculateFare(double distanceKm, double durationMin) {
+        return (2.00 * distanceKm) + (0.50 * durationMin);
+    }
+}
+
+// Discounted rate
+public class DiscountFareStrategy implements FareStrategy {
+    @Override
+    public double calculateFare(double distanceKm, double durationMin) {
+        return (0.75 * distanceKm) + (0.20 * durationMin);
+    }
+}
+
+// Increased rate
+public class SurgeFareStrategy implements FareStrategy {
+    @Override
+    public double calculateFare(double distanceKm, double durationMin) {
+        return (2.00 * distanceKm) + (0.50 * durationMin); // double rates
+    }
+}
