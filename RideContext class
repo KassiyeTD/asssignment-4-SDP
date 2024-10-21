@@ -1,0 +1,27 @@
+public class RideContext {
+    private FareStrategy fareStrategy;
+
+    public void setFareStrategy(FareStrategy fareStrategy) {
+        this.fareStrategy = fareStrategy;
+    }
+
+    public double calculateFare(double distanceKm, double durationMin, boolean isPeakTime) {
+        if (distanceKm < 0 || durationMin < 0) {
+            throw new IllegalArgumentException("Distance or duration cannot be negative.");
+        }
+        
+        // Application of the minimum fee for short trips
+        double fare = fareStrategy.calculateFare(distanceKm, durationMin);
+        if (fare < 5.00) {
+            fare = 5.00; // minimum fee
+        }
+        
+        return fare;
+    }
+
+    public void selectStrategy(double distanceKm, double durationMin, boolean isPeakTime) {
+        if (isPeakTime) {
+            setFareStrategy(new SurgeFareStrategy());
+        } else if (distanceKm > 20) {
+            setFareStrategy(new PremiumFareStrategy());
+        } else if (
