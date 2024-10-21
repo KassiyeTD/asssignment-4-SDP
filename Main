@@ -1,0 +1,25 @@
+public class Main {
+    public static void main(String[] args) {
+        RideContext rideContext = new RideContext();
+        
+       // Example 1: A regular trip (not rush hours)
+        rideContext.selectStrategy(10, false);  // Distance 10 km, not rush hours
+        double fare1 = rideContext.calculateFare(10, 15, false);  // 15 minute
+        System.out.println("The cost of a regular trip: $" + fare1);
+
+        // Example 2: A trip during rush hours
+        rideContext.selectStrategy(5, true);  // Расстояние 5 км, часы пик
+        double fare2 = rideContext.calculateFare(5, 10, true);  // 10 минут
+        System.out.println("The cost of a trip during rush hours: $" + fare2);
+
+        // Example 3: Long trip (more than 20 km)
+        rideContext.selectStrategy(25, false);  // Расстояние 25 км, не часы пик
+        double fare3 = rideContext.calculateFare(25, 30, false);  // 30 минут
+        System.out.println("The cost of a long trip: $" + fare3);
+
+        // Example 4: A short trip with a minimum fee
+        rideContext.selectStrategy(1, false);  // Расстояние 1 км, не часы пик
+        double fare4 = rideContext.calculateFare(1, 2, false);  // 2 минуты
+        System.out.println("The cost of a short trip: $" + fare4);
+    }
+}
